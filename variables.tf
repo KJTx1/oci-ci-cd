@@ -3,7 +3,7 @@ provider "oci" {
   tenancy_ocid     = var.tenancy_id
   user_ocid        = var.user_id
   fingerprint      = var.api_fingerprint
-  private_key_path = var.api_private_key_path
+  private_key      = var.api_private_key
 }
 
 terraform {
@@ -26,8 +26,8 @@ variable "provider_oci" {
 }
 
 
-variable "api_private_key_path" {
-  description = "The path to oci api private key."
+variable "api_private_key" {
+  description = "The oci api private key."
   type        = string
   default     = ""
 }

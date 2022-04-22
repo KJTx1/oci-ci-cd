@@ -1,16 +1,15 @@
 #change if needed
 
 provider_oci = {
-  user_id              = "ocid1.user.oc1..aaaaaaaapzu2dxoxvbeeipxehpncpyiwivleuxoseegalr2wiuej4qq4gfbq" # change me
-  api_fingerprint      = "37:0d:cf:4a:9d:c7:83:da:28:4b:02:43:b6:ba:f5:9b"                        # change me
-  api_private_key_path = "~/.oci/api_signing_key.pem"                        # change me
-  tenancy_id           = "ocid1.tenancy.oc1..aaaaaaaazofwdfeijgsbp4igei4jw32ghgrnoxt6km5w6besoddf5vyygjta" # change me
-  region               = "us-sanjose-1" # change me if needed
-  home_region          = "<..>"
+  tenancy_ocid = var.tenancy_id
+  user_ocid = var.user_id
+  fingerprint = var.api_fingerprint
+  private_key = var.api_private_key
+  region = var.region
 }
-compartment_id      = "ocid1.compartment.oc1..aaaaaaaafgkrvnwjhjme433sfsmopxigmyj6urrp7rztyaqhou6ept6ghz3a" # change me
-linuximage          = "ocid1.image.oc1............" #change if needed
-ssh_public_key_path = "~/.ssh/id_rsa.pub"
+compartment_id      = var.compartment_id
+linuximage          = "Oracle"
+ssh_public_key      = var.ssh_public_key
 label_prefix        = "git"
 linux_shape = {
   shape            = "VM.Standard.A1.Flex",

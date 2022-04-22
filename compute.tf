@@ -4,7 +4,7 @@ resource "oci_core_instance" "app_server" {
   compartment_id      = var.compartment_id
   shape               = lookup(var.linux_shape, "shape", "VM.Standard.A1.Flex")
   metadata = {
-    ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
+    ssh_authorized_keys = var.ssh_public_key
   }
 
   #Optional
