@@ -1,0 +1,161 @@
+title: "Compute Instance Terraform Deployment"
+description: "Create Compute Instance From Terraform Deployment"
+schemaVersion: 1.1.0
+version: "20200301"
+locale: "en"
+
+groupings:
+  - title: "Basic Hidden"
+    visible: false
+    variables:
+    - compartment_id
+    - tenancy_id
+    - region
+
+  - title: "Optional Configuration"
+    variables:
+    - vcn_name
+    - agree
+    - disagree
+    - label_prefix
+    - vcn_dns_label
+
+  - title: "Extras Hidden"
+    variables:
+      - provider_oci
+      - user_id
+      - api_fingerprint
+      - private_key_password
+      - api_private_key
+      - home_region
+      - instance_availability_domain
+      - linux_shape
+      - export_app-server_source_image_id
+      - linux_image_id
+      - linuximage
+      - vcn_cidr
+      - publicsub_cidr_block
+      - privatesub_cidr_block
+      - app_server_operating_system_version
+    visible: false
+
+variables:
+  compartment_id:
+    type: oci:identity:compartment:id
+    visible: true
+    required: true
+    title: "Compartment"
+    description: "The compartment to create the resources in."
+
+  region:
+    type: oci:identity:region:name
+    visible: true
+    required: true
+    title: "Region"
+    description: "The region in which to create resources."
+  
+  home_region:
+    type: oci:identity:region:name
+    visible: true
+    required: false
+    title: "Region"
+    description: "The home region in which to create resources."
+
+  provider_oci:
+    type: map(string)
+    visible: false
+
+  instance_availability_domain:
+    type: string
+    visible: false
+    required: false
+  tenancy_id:
+    type: string
+    visible: false
+    required: false
+  user_id:
+    type: string
+    visible: false
+    required: false
+  api_fingerprint:
+    type: string
+    visible: false
+    required: false
+  api_private_key:
+    type: string
+    visible: false
+    required: false
+  private_key_password:
+    type: string
+    visible: false
+    required: false
+  ssh_public_key:
+    type: oci:core:ssh:publickey
+    title: "SSH Public Key"
+    description: "The public SSH key for the key-pair that you want to use, if you wish to login to the instances over SSH."
+    additionalProps:
+      allowMultiple: true
+    pattern: "((^(ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)(,((ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)*$"
+    visible:
+      and:
+        - and:
+          - show_advanced
+        - not:
+          - generate_public_ssh_key
+
+  agree:
+    type: boolean
+    title: "Agree"
+    description: "accept"
+    visible: true
+  disagree:
+    type: boolean
+    title: "Disagree"
+    description: "deny"
+    visible: true
+
+  linux_shape:
+    type: map(any)
+    title: "Linux Shape"
+    description: "The shape of linux instance."
+    visible: false
+
+  export_app-server_source_image_id:
+    type: string
+    visible: false
+    required: false
+  linux_image_id:
+    type: string
+    visible: false
+    required: false
+  linuximage:
+    type: string
+    visible: false
+    required: false
+  label_prefix:
+    type: string
+    required: false
+  
+  vcn_dns_label:
+    type: string
+    visible: false
+    required: false
+
+  internet_gateway_enabled:
+    type: boolean
+    title: "Internet GW Enabled"
+    description: "whether to create a int gateway"
+    visible: true
+  nat_gateway_block_traffic:
+    type: boolean
+    title: "Nat GW Enabled"
+    description: "whether to create a nat gateway"
+    visible: true
+  
+
+outputs:
+  App_server_public_ip:
+    type: string
+    title: "The server's public IP"
+    visible: true
+

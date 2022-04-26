@@ -4,6 +4,7 @@ provider "oci" {
   user_ocid        = var.user_id
   fingerprint      = var.api_fingerprint
   private_key      = var.api_private_key
+  private_key_password = var.private_key_password
 }
 
 terraform {
@@ -25,6 +26,9 @@ variable "provider_oci" {
   type = map(string)
 }
 
+variable "private_key_password" {
+  default = ""
+}
 
 variable "api_private_key" {
   description = "The oci api private key."
@@ -81,17 +85,16 @@ variable "disagree" {
   type        = bool
 }
 
-
-variable "ssh_public_key_path" {
-  default     = "none"
-  description = "The path to ssh public key."
-  type        = string
-}
-variable "ssh_public_key" {
-  default     = ""
-  description = "The ssh public key."
-  type        = string
-}
+# variable "ssh_public_key_path" {
+#   default     = "none"
+#   description = "The path to ssh public key."
+#   type        = string
+# }
+# variable "ssh_public_key" {
+#   default     = ""
+#   description = "The ssh public key."
+#   type        = string
+# }
 
 variable "linux_shape" {
   default = {
@@ -137,7 +140,7 @@ variable "internet_gateway_enabled" {
 }
 
 variable "nat_gateway_block_traffic" {
-  description = "whether to create a int gateway"
+  description = "whether to create a nat gateway"
   default     = false
   type        = bool
 }
