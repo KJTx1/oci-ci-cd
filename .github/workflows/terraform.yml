@@ -2,7 +2,7 @@ name: oci-terraform-build
 on:
   push:
     branches:
-      - KayCode
+      - tf_github_action_integration
 jobs:
   build-with-terraform:
     name: Build With Terraform
