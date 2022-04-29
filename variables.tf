@@ -62,6 +62,12 @@ variable "user_id" {
   default     = ""
 }
 
+variable "ssh_public_key" {
+  description = "Public key to ssh into the instance."
+  type = string
+  default = ""
+}
+
 variable "instance_availability_domain" {
   description = "availability Domain."
   type        = string
