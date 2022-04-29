@@ -61,10 +61,6 @@ variables:
     title: "Region"
     description: "The home region in which to create resources."
 
-  provider_oci:
-    type: map(string)
-    visible: false
-
   instance_availability_domain:
     type: string
     visible: false

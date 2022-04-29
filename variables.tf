@@ -22,10 +22,6 @@ variable "api_fingerprint" {
   default     = ""
 }
 
-variable "provider_oci" {
-  type = map(string)
-}
-
 variable "private_key_password" {
   default = ""
 }
@@ -128,7 +124,7 @@ variable "linuximage" {
 }
 
 variable "label_prefix" {
-  default     = "Oracle"
+  default     = "git"
   description = "A string that will be prepended to all resources."
   type        = string
 }
