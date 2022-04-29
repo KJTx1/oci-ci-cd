@@ -137,7 +137,7 @@ variable "internet_gateway_enabled" {
 }
 
 variable "nat_gateway_block_traffic" {
-  description = "whether to create a int gateway"
+  description = "whether to create a nat gateway"
   default     = false
   type        = bool
 }
